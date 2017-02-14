@@ -1,0 +1,26 @@
+{
+  "name": "notes-app-challenge",
+  "version": "1.0.0",
+  "description": "App for creating, showing and listing notes",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rkclark/notes-app-challenge.git"
+  },
+  "author": "VERP",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rkclark/notes-app-challenge/issues"
+  },
+  "homepage": "https://github.com/rkclark/notes-app-challenge#readme",
+  "dependencies": {
+    "http-server": "^0.9.0",
+    "nodemon": "^1.11.0"
+  },
+  "devDependencies": {
+    "http-server": "^0.9.0"
+  }
+}
