@@ -10,7 +10,9 @@ function assert(){
 
 assert.prototype.isEqual = function() {
 };
-assert.isEqual();
+
+
+// assert.isEqual();
 
   // var assert = function(functionToTest,expectations){
   //   results = functionToTest() //with args
