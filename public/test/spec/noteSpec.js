@@ -1,5 +1,5 @@
-var text = new Note('Hello');
+var text = new note('Hello');
 
-it("can be created with text string and returns that string", function(){
-  assert.isEqual(text.getText(), "Hello");
+it("it(): can be created with text string and returns that string", function(){
+  assert(text.getText()).isEqual("Hello");
 })
