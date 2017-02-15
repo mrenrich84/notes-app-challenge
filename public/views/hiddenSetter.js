@@ -7,11 +7,10 @@
     } else {
       element.setAttribute('class', elementClass.replace('hidden', '').trim());
     }
-  
   };
 
   var checkIfHidden = function(elementClass){
-    if (elementClass.includes('hidden')) {
+    if (elementClass && elementClass.includes('hidden')) {
       return true;
     } else {
       return false;
@@ -19,6 +18,6 @@
   };
 
   exports.hiddenSetter = hiddenSetter;
-  exports.checkIfHIdden = checkIfHidden;
+  exports.checkIfHidden = checkIfHidden;
 
 })(this);
