@@ -12,13 +12,17 @@
         self.createNewNote();
         self.clearForm();
         location.hash = "#home";
+      } else {
+        if (location.hash === "#home") {
+          noteListBuilder(appNoteList);
+        }
       }
     };
 
     this.createNewNote = function(){
       var noteText = document.getElementById('new_note_textarea').value;
       var newNote = new note(noteText);
-      noteList.pushNote(newNote);
+      appNoteList.pushNote(newNote);
     };
 
     this.clearForm = function() {
@@ -34,6 +38,6 @@
 })(this);
 
 var notesApp = new app();
-var noteList = new noteList();
+var appNoteList = new noteList();
 //EVENTS
 window.onhashchange = notesApp.handleHashChange;

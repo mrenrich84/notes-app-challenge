@@ -13,15 +13,16 @@
     <link rel="stylesheet" href="/css/main.css">
   </head>
   <body>
-    <h1 class="test hidden" id="test">Notes App</h1>
-    <a href="#note_content">Go to note content hash</a>
+    <h1 class="test" id="test">Notes App</h1>
     <div id="note_form">
         <label class="d-block my-1" for="new_note_text">New Note</label>
         <textarea class="d-block my-1" id="new_note_textarea" name="new_note_text" rows="20" cols="120"></textarea>
-        <a class="d-block my-1" id="submit_new_note" href="#createNewNote">Create</button>
+        <a class="d-block my-1" id="submit_new_note" href="#createNewNote">Create</a>
     </div>
     <div id="notes_list">
+      <ul id="notes_list_ul">
 
+      </ul>
     </div>
     <div id="note_content">
 
@@ -32,6 +33,7 @@
     <script src="/models/noteList.js"></script>
     <script src="/views/hiddenSetter.js" type="text/javascript"></script>
     <script src="/views/domInjector.js" type="text/javascript"></script>
+    <script src="/views/noteListBuilder.js" type="text/javascript"></script>
     <script src="/app.js" type="text/javascript"></script>
     <script src="/test/lib/testFramework.js" type="text/javascript"></script>
     <script src="/test/spec/tddFrameworkSpec.js" type="text/javascript"></script>
