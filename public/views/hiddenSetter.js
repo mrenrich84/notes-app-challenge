@@ -7,10 +7,7 @@
     } else {
       element.setAttribute('class', elementClass.replace('hidden', '').trim());
     }
-    console.log(element);
-    console.log(elementClass);
-    console.log(checkIfHidden(elementClass));
-
+  
   };
 
   var checkIfHidden = function(elementClass){
