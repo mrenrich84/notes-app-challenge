@@ -1,11 +1,12 @@
-it("it(): displays a message and executes lines of code inside with assert when failing",function(){
-  assert(true).isEqual(false);
-});
+describe("describe(): testing assert",function(){
+  it("it(): displays a message and executes lines of code inside with assert when failing",function(){
+    assert(true).isEqual(false);
+  });
 
-it("it(): when assert doesn't fail, shows nothing",function(){
-  assert(true).isEqual(true);
+  it("it(): when assert doesn't fail, shows nothing",function(){
+    assert(true).isEqual(true);
+  });
 });
-
 
 
 function isElementHidden(id) {
