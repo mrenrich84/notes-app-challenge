@@ -45,12 +45,46 @@
 
   };
 
-  AssertObj.prototype.isEqual = function (expectation) {
-    var results = (this.functionToTest === expectation);
+  AssertObj.prototype.isEqualAbstraction = function (expectation, isNotEqual = false) {
+    var results = ( this.functionToTest === expectation );
+    var testType = 'isEqual';
+    if (isNotEqual) {
+      results = !results;
+      testType = 'isNotEqual';
+     };
     if (!results){
-      printAssertResults("isEqual", expectation, this.functionToTest)
+      printAssertResults(testType, expectation, this.functionToTest)
     };
   };
+
+  AssertObj.prototype.isEqual = function (expectation) {
+    this.isEqualAbstraction(expectation)
+  };
+
+  AssertObj.prototype.isNotEqual = function(expectation) {
+    this.isEqualAbstraction(expectation, true)
+  };
+
+  AssertObj.prototype.toContainAbstraction = function (string, toNotContain = false) {
+    var results = ( this.functionToTest.indexOf(string) !== -1 );
+    var testType = 'toContain';
+    if (toNotContain) {
+      results = !results;
+      testType = 'toNotContain';
+     };
+    if (!results){
+      printAssertResults(testType, expectation, this.functionToTest)
+    };
+  };
+
+  AssertObj.prototype.toContain = function (expectation) {
+    this.toContainAbstraction(expectation)
+  };
+
+  AssertObj.prototype.toNotContain = function(expectation) {
+    this.toContainAbstraction(expectation, true)
+  };
+
 
   var assert = function(functionToTest){
     return new AssertObj(functionToTest)
