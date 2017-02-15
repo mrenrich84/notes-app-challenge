@@ -1,27 +1,33 @@
-
-
 (function(exports){
+
+
   function printIt(message){
     console.log(message);
   }
 
-function assert(){
-}
+  function printAssertResults(testType, expected, got){
+    message = "    Failure/Error: while checking " + testType + "\n" +
+              "        Expected: " + expected + "\n" +
+              "        Got     : " + got
 
-assert.prototype.isEqual = function() {
-};
+    console.log(message);
+  }
 
+  function AssertObj(functionToTest){ // any better naming?
+    this.functionToTest = functionToTest
 
-// assert.isEqual();
+  }
 
-  // var assert = function(functionToTest,expectations){
-  //   results = functionToTest() //with args
-  //   var isEqual = function(results){
-  //
-  //   }
-  //   //...
-  // };
+  AssertObj.prototype.isEqual = function (expectation) {
+    var results = (this.functionToTest === expectation);
+    if (!results){
+      printAssertResults("isEqual", expectation, this.functionToTest)
+    };
+  };
 
+  var assert = function(functionToTest){
+    return new AssertObj(functionToTest)
+  };
 
   function it(message, codeBlock){
     printIt(message);
