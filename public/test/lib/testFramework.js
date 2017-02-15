@@ -29,9 +29,19 @@
     return new AssertObj(functionToTest)
   };
 
+  function saveState(){
+    return document.body.innerHTML
+  }
+
+  function restoreState(myOriginalBody){
+    document.body.innerHTML = myOriginalBody;
+  }
+
   function it(message, codeBlock){
     printIt(message);
+    myOriginalBody = saveState();
     codeBlock();
+    restoreState(myOriginalBody);
   };
 
   exports.it = it;
