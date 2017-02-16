@@ -1,7 +1,7 @@
 describe("describe(): organize example groups",function(){});
 
 describe("it(): stores each example",function(){
-  it("displays a message and executes lines of code with an assert when assert is failing",function(){
+  it("executes lines of code and displays a message when assert is failing",function(){
     assert(true).isEqual(false);
   });
 
@@ -36,6 +36,7 @@ describe('assert(): interface to tests',function(){
   it('.isNotEqual(): reverts .isEqual',function(){
     assert(1+1).isNotEqual(3);
   });
+
   it('.toContain(): looks for a substring inside another string',function(){
     text = document.body.innerHTML;
     string = 'div';
@@ -45,5 +46,12 @@ describe('assert(): interface to tests',function(){
     text = document.body.innerHTML;
     string = 'asdsacsa';
     assert(text).toNotContain(string);
+  });
+
+  it('.toThrow(): looks for a specific error message',function(){
+    assert(function(){throw("error message")}).toThrow('error message');
+  });
+  it('.toNotThrow(): looks that any error message wasn\'t thrown',function(){
+    assert(function(){1}).toNotThrow();
   });
 });
