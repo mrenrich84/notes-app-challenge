@@ -31,9 +31,9 @@ Our first challenge was to consider the constraints that had been placed on the 
 
 This was followed by an extensive white-boarding session!
 
-![High level route descs](https://github.com/rkclark/notes-app-challenge/images/high_level_route_descriptions.jpg)
+![High level route descs](https://github.com/rkclark/notes-app-challenge/blob/master/images/high_level_route_descriptions.jpg)
 
-![High level route descs](https://github.com/rkclark/notes-app-challenge/images/zoomed_out_dom_routes.jpg)
+![High level route descs](https://github.com/rkclark/notes-app-challenge/blob/master/images/zoomed_out_dom_routes.jpg)
 
 We then translated our scribblings into a planned MVP sprint in our [Taiga project.](https://tree.taiga.io/project/rkclark-notes-app/)
 
@@ -68,19 +68,19 @@ The tests are run every time the app loads and the results are output to the bro
 
 - Enter the next of your new note in the New Note text field. Click Create.
 
-![Create new](https://github.com/rkclark/notes-app-challenge/images/create_new.png)
+![Create new](https://github.com/rkclark/notes-app-challenge/blob/master/images/create_new.png)
 
 - You will now see your new note listed (only first 20 chars are shown)
 
-![List new](https://github.com/rkclark/notes-app-challenge/images/list_new.png)
+![List new](https://github.com/rkclark/notes-app-challenge/blob/master/images/list_new.png)
 
 - Click your new note to see the full text
 
-![see new](https://github.com/rkclark/notes-app-challenge/images/see_new.png)
+![see new](https://github.com/rkclark/notes-app-challenge/blob/master/images/see_new.png)
 
 - You can click back to the home page and then add as many notes as you like!
 
-![list many](https://github.com/rkclark/notes-app-challenge/images/list_many.png)
+![list many](https://github.com/rkclark/notes-app-challenge/blob/master/images/list_many.png)
 
 If you refresh your browser, all your notes will be gone!
 
