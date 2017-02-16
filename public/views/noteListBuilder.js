@@ -4,7 +4,7 @@
     clearElement(element);
 
     noteList.getNotes().forEach(function(note, index){
-      var li = "<a href=\"#shownote_"+index+"\"><li id=\"note_"+index+"\">"+note.getText().slice(0, 20)+"</li></a>";
+      var li = "<a href=\"#showNote_"+index+"\"><li id=\"note_"+index+"\">"+note.getText().slice(0, 20)+"</li></a>";
 
       element.innerHTML += li;
     });

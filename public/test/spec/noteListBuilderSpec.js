@@ -23,7 +23,7 @@ describe("Note List Builder",function(){
     testNoteList.pushNote(testNote);
     noteListBuilder(testNoteList);
     var element = document.getElementById('notes_list_ul');
-    assert(element.innerHTML).toContain("<a href=\"#shownote_"+0+"\"><li id=\"note_"+0+"\">"+testNote.getText().slice(0, 20)+"</li></a>");
+    assert(element.innerHTML).toContain("<a href=\"#showNote_"+0+"\"><li id=\"note_"+0+"\">"+testNote.getText().slice(0, 20)+"</li></a>");
   });
 
 
