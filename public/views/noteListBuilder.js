@@ -3,8 +3,9 @@
     var element = document.getElementById('notes_list_ul');
     clearElement(element);
 
-    noteList.getNotes().forEach(function(note){
-      var li = "<a><li>"+note.getText().slice(0, 20)+"</li></a>";
+    noteList.getNotes().forEach(function(note, index){
+      var li = "<a href=\"#shownote_"+index+"\"><li id=\"note_"+index+"\">"+note.getText().slice(0, 20)+"</li></a>";
+
       element.innerHTML += li;
     });
   };
