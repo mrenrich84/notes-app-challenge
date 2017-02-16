@@ -1,16 +1,20 @@
 (function(exports){
 
   function printTestHeader(headerType, message){
-    indentationType = {
-      it: "  ",
-      describe: ""
-    }
+    indentation = {
+      describe : "",
+      it : "  "
+    };
+    style = {
+      describe : 'font-weight: bold; color: black',
+      it : 'color: black'
+    };
 
-    console.log(indentationType[headerType] + message);
+    console.log('%c' + indentation[headerType] + message, style[headerType]);
   }
 
   function saveState(){
-    return document.body.innerHTML
+    return document.body.innerHTML;
   }
 
   function restoreState(myOriginalBody){
@@ -26,192 +30,159 @@
 
   function it(message, codeBlock){
     testHeader('it',message, codeBlock);
-  };
+  }
 
   function describe(message, codeBlock){
     testHeader('describe',message, codeBlock);
-  };
+  }
 
-  function printAssertResults(testType, expected, got){
-    testTypePrintouts = {
+  function printAssertResults(args){
+    errorOutcomes = {
       isEqual: {
-        expectation: 'Expected',
-        got: 'Got'
+        expected :  'Expected: ',
+        got :       'Got:      '
       },
       isNotEqual: {
-        expectation: 'Expected not to be',
-        got: 'Got'
+        expected :  'Expected not to be: ',
+        got :       'Got:                '
       },
       toContain: {
-        expectation: 'String to be contained',
-        got: 'The whole string is'
+        expected :  'String to be contained:',
+        got :       'The whole string is:   '
       },
       toNotContain: {
-        expectation: 'String not to be contained',
-        got: 'The whole string is'
+        expected :  'String not to be contained: ',
+        got :       'The whole string is:        '
       },
       toThrow: {
-        expectation: 'Expected',
-        got: 'Got'
+        expected :  'Expected: ',
+        got :       'Got:      '
       },
       toNotThrow: {
-        expectation: 'No error message expected',
-        got: 'But got this error message'
+        expected :  'No error message expected:          ',
+        got :       'But instead got this error message: '
       }
-    }
+    };
 
-    indentation = "  "
-    message = indentation.repeat(3) + "Failure/Error: while checking " + testType + "\n" +
-              indentation.repeat(4) + testTypePrintouts[testType].expectation + ": " + expected + "\n" +
-              indentation.repeat(4) + testTypePrintouts[testType].got + ": " + got
+    indentation = {
+      mainLevel : "  ".repeat(2),
+      subLevel : "  ".repeat(5)
+    };
 
-    console.log(message);
-  };
+    var matcher = args.matcherType;
+    message = indentation.mainLevel + "Failure/Error: while checking " + args.matcherType + "\n" +
+              indentation.subLevel + errorOutcomes[matcher].expected  + args.expectation + "\n" +
+              indentation.subLevel + errorOutcomes[matcher].got + args.functionToTest;
 
-  function AssertObj(functionToTest){ // any better naming?
-    this.functionToTest = functionToTest
+    console.error(message);
+  }
 
-  };
+  function AssertObj(functionToTest){
+    this.functionToTest = functionToTest;
+  }
 
   AssertObj.prototype.testAbstraction = function (args) {
-    args['functionToTest'] = this.functionToTest
-    var results = args['testFunction'](args['functionToTest'], args['expectation'], args);
-    if (args['not']) {
+    args.functionToTest = this.functionToTest;
+    var results = args.testFunction(args.functionToTest, args.expectation, args);
+    if (args.not) {
       results = !results;
-     };
+     }
     if (!results){
-      printAssertResults(args['testType'], args['expectation'], args['functionToTest'])
-    };
-  };
-
-  AssertObj.prototype.toThrow = function (expectation) {
-    var args = {
-      testFunction: function(functionToTest, expectation, args){
-        var results = false;
-        try {
-          functionToTest();
-          args['functionToTest'] = "NO ERROR MESSAGE";
-        }
-        catch(error){
-          if (error == expectation){
-            return results = true;
-          } else {
-            args['functionToTest'] = error;
-          }
-        }
-      },
-      expectation: expectation,
-      testType: 'toThrow'
-    };
-    this.testAbstraction(args)
+      printAssertResults(args);
+    }
   };
 
   AssertObj.prototype.isEqualAbstraction = function (args) {
-    args['testFunction'] = function(functionToTest, expectation){ return functionToTest === expectation };
-    this.testAbstraction(args)
+    args.testFunction = function(functionToTest, expectation) {
+      return functionToTest === expectation;
+    };
+    this.testAbstraction(args);
   };
 
-
   AssertObj.prototype.toContainAbstraction = function (args) {
-    args['testFunction'] = function(functionToTest, string){ return functionToTest.indexOf(string) !== -1 };
-    this.testAbstraction(args)
+    args.testFunction = function(functionToTest, string) {
+      return functionToTest.indexOf(string) !== -1;
+    };
+    this.testAbstraction(args);
   };
 
   AssertObj.prototype.isEqual = function (expectation) {
     var args = {
-      expectation: expectation,
-      testType: 'isEqual' }
-    this.isEqualAbstraction(args)
+      expectation : expectation,
+      matcherType : 'isEqual'
+    };
+    this.isEqualAbstraction(args);
   };
 
   AssertObj.prototype.isNotEqual = function(expectation) {
     var args = {
-      expectation: expectation,
-      testType: 'isNotEqual',
-      not: true}
-    this.isEqualAbstraction(args)
+      expectation : expectation,
+      matcherType : 'isNotEqual',
+      not : true
+    };
+    this.isEqualAbstraction(args);
   };
 
   AssertObj.prototype.toContain = function (expectation) {
     var args = {
-      expectation: expectation,
-      testType: 'toContain' }
-    this.toContainAbstraction(args)
+      expectation : expectation,
+      matcherType : 'toContain'
+    };
+    this.toContainAbstraction(args);
   };
 
   AssertObj.prototype.toNotContain = function(expectation) {
     var args = {
-      expectation: expectation,
-      testType: 'toNotContain',
-      not: true}
-    this.toContainAbstraction(args)
-  };
-
-  AssertObj.prototype.toThrowAbstraction = function (expectation, toNotThrow = false) {
-    // var results = false;
-    // try {
-    //   this.functionToTest();
-    // }
-    // catch(e){
-    //   if (e == expectation){
-    //     results = true;
-    //   } else {
-    //     throw e;
-    //   }
-    // }
-    //
-    // var testType = 'toThrow';
-    // if (toNotThrow) {
-    //   results = !results;
-    //   testType = 'toNotThrow';
-    //  };
-    // if (!results){
-    //   printAssertResults(testType, expectation, this.functionToTest)
-    // };
-  };
-  //
-  // AssertObj.prototype.toThrow = function (expectation) {
-  //       // this.toThrowAbstraction(expectation)
-  //   var results;
-  //   try {
-  //     this.functionToTest();
-  //     results = "NO ERROR MESSAGE";
-  //   }
-  //   catch(e){
-  //     if (e == expectation){
-  //       results = false;
-  //     } else {
-  //       results = e;
-  //     }
-  //   }
-  //
-  //   var testType = 'toThrow';
-  //
-  //   if (results){
-  //     printAssertResults(testType, expectation, results)
-  //   };
-  // };
-
-  AssertObj.prototype.toNotThrow = function(expectation) {
-    // this.toThrowAbstraction(expectation, true)
-    var results;
-    try {
-      this.functionToTest();
-      // results = true;
-    }
-    catch(e){
-      results = e;
-    }
-
-    var testType = 'toNotThrow';
-
-    if (results){
-      printAssertResults(testType, "", results)
+      expectation : expectation,
+      matcherType : 'toNotContain',
+      not : true
     };
+    this.toContainAbstraction(args);
+  };
+
+  AssertObj.prototype.toThrow = function (expectation) {
+    var results = false;
+    var args = {
+      testFunction : function(functionToTest, expectation, args){
+        try {
+          functionToTest();
+          args.functionToTest = "NO ERROR MESSAGE";
+        }
+        catch(error){
+          if (error == expectation) {
+            return results = true;
+          }
+          args.functionToTest = error;
+        }
+      },
+      expectation : expectation,
+      matcherType : 'toThrow'
+    };
+    this.testAbstraction(args);
+  };
+
+  AssertObj.prototype.toNotThrow = function(functionToTest) {
+    var results = false;
+    var args = {
+      matcherType : 'toNotThrow',
+      expectation : '',
+      not : true,
+      testFunction : function(functionToTest) {
+        try {
+          functionToTest();
+          return results;
+        }
+        catch(e) {
+          args.functionToTest = e;
+          return results = true;
+        }
+      }
+    };
+    this.testAbstraction(args);
   };
 
   var assert = function(functionToTest){
-    return new AssertObj(functionToTest)
+    return new AssertObj(functionToTest);
   };
 
   exports.it = it;
