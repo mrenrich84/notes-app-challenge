@@ -31,7 +31,7 @@ describe("it(): stores each example",function(){
 
 describe('assert(): interface to tests',function(){
   it('.isEqual(): test if expectation are === to what it has been given',function(){
-    assert(1+1).isEqual(2);
+    assert(2).isEqual(2);
   });
   it('.isNotEqual(): reverts .isEqual',function(){
     assert(1+1).isNotEqual(3);
