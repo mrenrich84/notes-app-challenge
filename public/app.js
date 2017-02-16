@@ -1,6 +1,7 @@
 (function(exports) {
 
-  function App() {
+  function App(noteList) {
+    this.appNoteList = noteList;
     var self = this;
 
     this.handleHashChange = function(){
@@ -21,11 +22,11 @@
             hiddenSetter("note_content");
           }
 
-          noteListBuilder(appNoteList);
+          noteListBuilder(self.appNoteList);
         } else {
           if (location.hash.includes("showNote")) {
             var note_id = location.hash.split("_")[1];
-            var note_text = appNoteList.getNoteById(note_id).getText();
+            var note_text = self.appNoteList.getNoteById(note_id).getText();
             domInjector("note_content", "<p>"+note_text+"</p>");
             hiddenSetter("home_page_content");
             hiddenSetter("note_content");
@@ -37,7 +38,7 @@
     this.createNewNote = function(){
       var noteText = document.getElementById('new_note_textarea').value;
       var newNote = new note(noteText);
-      appNoteList.pushNote(newNote);
+      self.appNoteList.pushNote(newNote);
     };
 
     this.clearForm = function() {
@@ -52,7 +53,7 @@
 
 })(this);
 
-var notesApp = new app();
 var appNoteList = new noteList();
+var notesApp = new app(appNoteList);
 //EVENTS
 window.onhashchange = notesApp.handleHashChange;
