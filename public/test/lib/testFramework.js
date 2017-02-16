@@ -33,9 +33,29 @@
   };
 
   function printAssertResults(testType, expected, got){
-    message = "    Failure/Error: while checking " + testType + "\n" +
-              "        Expected: " + expected + "\n" +
-              "        Got     : " + got
+    testTypePrintouts = {
+      isEqual: {
+        expectation: 'Expected',
+        got: 'Got'
+      },
+      isNotEqual: {
+        expectation: 'Expected not to be',
+        got: 'Got'
+      },
+      toContain: {
+        expectation: 'String to be contained',
+        got: 'The whole string is'
+      },
+      toNotContain: {
+        expectation: 'String not to be contained',
+        got: 'The whole string is'
+      }
+    }
+
+    indentation = "  "
+    message = indentation.repeat(3) + "Failure/Error: while checking " + testType + "\n" +
+              indentation.repeat(4) + testTypePrintouts[testType].expectation + ": " + expected + "\n" +
+              indentation.repeat(4) + testTypePrintouts[testType].got + ": " + got
 
     console.log(message);
   };
@@ -73,7 +93,7 @@
       testType = 'toNotContain';
      };
     if (!results){
-      printAssertResults(testType, expectation, this.functionToTest)
+      printAssertResults(testType, string, this.functionToTest)
     };
   };
 

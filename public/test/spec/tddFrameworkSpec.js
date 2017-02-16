@@ -31,15 +31,19 @@ describe("it(): stores each example",function(){
 
 describe('assert(): interface to tests',function(){
   it('.isEqual(): test if expectation are === to what it has been given',function(){
-    assert(true).isEqual(false);
+    assert(1+1).isEqual(2);
   });
   it('.isNotEqual(): reverts .isEqual',function(){
-    assert(true).isNotEqual(true);
+    assert(1+1).isNotEqual(3);
   });
   it('.toContain(): looks for a substring inside another string',function(){
     text = document.body.innerHTML;
     string = 'div';
     assert(text).toContain(string);
   });
+  it('.toNotContain(): reverts .toContain',function(){
+    text = document.body.innerHTML;
+    string = 'asdsacsa';
+    assert(text).toNotContain(string);
+  });
 });
-// print toNotContain and isNotEqual
