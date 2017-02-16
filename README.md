@@ -41,6 +41,8 @@ We then translated our scribblings into a planned MVP sprint in our [Taiga proje
 
 Our team of four split into twos to pair program the development tasks listed on our [scrum board](https://tree.taiga.io/project/rkclark-notes-app/taskboard/mvp-93?kanban-status=890406). Work on the testing library began immediately while the node.js server and application skeleton was built.
 
+We then progressed to developing our controller, models and views.
+
 Initial TDD relied on basic 'isEqual' tests initially and was then extended to include other methods as the testing library expanded in functionality.
 
 ## Results
@@ -55,6 +57,7 @@ We chose to focus the MVP on achieving these goals and, as such, the app current
 - Clone this repo
 - Navigate to project root folder
 - Run `npm install`
+- Run `npm install nodemon -g` (may require admin rights, run as sudo if needed)
 - Run `nodemon server.js` to run the web server
 - Open `http://localhost:3000/` in your browser to access the app
 
