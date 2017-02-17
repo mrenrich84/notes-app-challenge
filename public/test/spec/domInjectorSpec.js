@@ -10,6 +10,6 @@ describe("domInjector", function(){
 
   it("Throws error if cannot find element", function(){
     var string = "Test String";
-    assert(domInjector("", string)).toThrow('No element found');
+    assert(function(){ domInjector("", string); }).toThrow('No element found');
   });
 });

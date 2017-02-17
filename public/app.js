@@ -6,31 +6,39 @@
 
     this.handleHashChange = function(){
       if (location.hash === "#createNewNote") {
-        self.createNewNote();
-        self.clearForm();
-        location.hash = "#home";
+        createNewNoteView();
       } else if (location.hash === "#home") {
-        var homePageDiv = document.getElementById("home_page_content");
-        var noteContentDiv = document.getElementById("note_content");
+        homeView();
+      } else if (location.hash.includes("showNote")) {
+        showNoteView();
+      }
+    };
 
-          if (isHidden(homePageDiv.getAttribute('class'))) {
-            unhide("home_page_content");
-          }
-          if (!isHidden(noteContentDiv.getAttribute('class'))) {
-            hide("note_content");
-          }
-        noteListBuilder(self.appNoteList);
+    function createNewNoteView() {
+      self.createNewNote();
+      self.clearForm();
+      location.hash = "#home";
+    }
 
-      } else if (location.hash.includes("showNote")){
+    function homeView(){
+      var homePageDiv = document.getElementById("home_page_content");
+      var noteContentDiv = document.getElementById("note_content");
+      if (isHidden(homePageDiv.getAttribute('class'))) {
+        unhide("home_page_content");
+      }
+      if (!isHidden(noteContentDiv.getAttribute('class'))) {
+        hide("note_content");
+      }
+      noteListBuilder(self.appNoteList);
+    }
 
-        var note_id = location.hash.split("_")[1];
-        var note_text = self.appNoteList.getNoteById(note_id).getText();
-        domInjector("note_content", "<p>"+note_text+"</p>");
-        hide("home_page_content");
-        unhide("note_content");
-        }
-      };
-
+    function showNoteView() {
+      var note_id = location.hash.split("_")[1];
+      var note_text = self.appNoteList.getNoteById(note_id).getText();
+      domInjector("note_content", "<p>"+note_text+"</p>");
+      hide("home_page_content");
+      unhide("note_content");
+    }
 
     this.createNewNote = function(){
       var noteText = document.getElementById('new_note_textarea').value;
@@ -43,7 +51,6 @@
       element.value = "";
     };
   }
-
 
   //Export app constructor to window
   exports.app = App;

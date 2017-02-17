@@ -1,7 +1,19 @@
 /*GENERAL STYLES*/
 
 body {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Delius Unicase', cursive;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul li {
+  margin-left: 10em;
+  list-style-type: disc;
+  color: #04746d;
+  font-size: 2rem;
+  text-align: left;
 }
 
 .d-block {
@@ -20,4 +32,58 @@ body {
 
 .hidden {
   display: none;
+}
+
+.nav_bar {
+  margin: 0rem;
+  padding: 1rem;
+  font-family: 'Delius Unicase', cursive;
+  background-color: #00AAA0;
+  height: 6rem;
+}
+
+.page_layout {
+  margin: 0px;
+  padding: 20px;
+  font-family: 'Delius Unicase', cursive;
+  background-color: #8ED2C9;
+  height: 1000px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#title {
+  font-size: 2rem;
+  color: #8ED2C9;
+}
+
+#submit_new_note {
+  margin:0px;
+  font-size: 30px;
+  font-weight: normal;
+  padding-top: 15px;
+  padding-bottom: 0px;
+  text-decoration: none;
+  color: #FCF4D9;
+  background-color: #FF7A5A;
+  width: 150px;
+  height: 50px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+#submit_new_note:hover {
+  background-color: #8b3420;
+  transition: 0.5s ease;
+}
+
+#new_note_textarea {
+  font-family: 'Delius Unicase', cursive;
+  background-color: #FCF4D9;
+  border-radius: 8px;
+  padding: 10px;
+  border-color: none;
+  font-size: 2rem;
+  width: 60rem;
+  height: 20rem;
 }

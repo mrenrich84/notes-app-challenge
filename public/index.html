@@ -9,30 +9,29 @@
 
     <title>Notes App</title>
     <!-- Custom styles for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Barrio|Delius+Unicase|Raleway" rel="stylesheet">
   </head>
+
   <body>
-    <a href="#home"><h1 class="test" id="test">Notes App</h1></a>
-    <div id="home_page_content">
-
-      <div id="note_form">
-          <label class="d-block my-1" for="new_note_text">New Note</label>
-          <textarea class="d-block my-1" id="new_note_textarea" name="new_note_text" rows="20" cols="120"></textarea>
-          <a class="d-block my-1" id="submit_new_note" href="#createNewNote">Create</a>
-      </div>
-
-      <div id="notes_list">
-        <ul id="notes_list_ul">
-
-        </ul>
-      </div>
+    <div class="nav_bar" align="center">
+      <a id="title" href="#home"><h1 class="test" id="test">Notes App</h1></a>
     </div>
 
-    <div id="note_content">
+    <div class="page_layout">
+      <div id="home_page_content">
+        <div id="note_form" align="center">
+          <textarea class="d-block my-1" id="new_note_textarea" name="new_note_text" rows="20" cols="120" placeholder="Insert your text here"></textarea>
+          <a id="submit_new_note" class="d-block my-1" href="#createNewNote">Create</a>
+        </div>
 
+        <div id="notes_list" >
+          <ul id="notes_list_ul"></ul>
+        </div>
+      </div>
+
+      <div id="note_content" align="center"></div>
     </div>
-
 
     <script src="/models/note.js"></script>
     <script src="/models/noteList.js"></script>
@@ -48,7 +47,5 @@
     <script src="/test/spec/noteListSpec.js"></script>
     <script src="/test/spec/noteListBuilderSpec.js"></script>
     <script src="/test/spec/hiddenSetterSpec.js"></script>
-
   </body>
-
 </html>

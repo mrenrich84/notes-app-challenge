@@ -8,28 +8,25 @@
 
   var hide = function(id){
     var elementClass = getElementClass(id);
+    console.log(elementClass);
     if (!isHidden(elementClass)){
-    document.
-      getElementById(id).
-      setAttribute('class', (elementClass + " hidden").trim());
+      document.
+        getElementById(id).
+        setAttribute('class', [elementClass, ' hidden'].join(''));
     }
   };
 
   var unhide = function(id){
     var elementClass = getElementClass(id);
     if (isHidden(elementClass)){
-    document.
-      getElementById(id).
-      setAttribute('class', elementClass.replace('hidden', '').trim());
-    }
+      document.
+        getElementById(id).
+        setAttribute('class', elementClass.replace('hidden', '').trim());
+      }
   };
 
   var isHidden = function(elementClass){
-    if (elementClass && elementClass.includes('hidden')) {
-      return true;
-    } else {
-      return false;
-    }
+    return (elementClass && elementClass.includes('hidden'));
   };
 
   exports.hide = hide;
