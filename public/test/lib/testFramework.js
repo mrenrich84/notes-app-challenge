@@ -1,7 +1,6 @@
 (function(exports){
 
   function printTestHeader(args){
-  // function printTestHeader(headerType, message){
     indentation = {
       describe : "",
       it : "  "
@@ -41,7 +40,6 @@
   }
 
   function describe(message, codeBlock){
-    // testController('describe',message, codeBlock);
     var args = {
       testHeaderType :  'describe',
       message :         message,
@@ -97,11 +95,11 @@
 
   AssertObj.prototype.testAbstraction = function (args) {
     args.assertion = this.assertion;
-    var results = args.evaluationFunction(args);
+    var isTestPassed = args.evaluationFunction(args);
     if (args.not) {
-      results = !results;
+      isTestPassed = !isTestPassed;
      }
-    if (!results){
+    if (!isTestPassed){
       printAssertResults(args);
     }
   };
