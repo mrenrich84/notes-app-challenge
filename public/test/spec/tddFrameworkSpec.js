@@ -12,7 +12,7 @@ describe("it(): stores each example",function(){
   function isElementHidden(id) {
     var element = document.getElementById(id);
     var elementClass = element.getAttribute('class');
-    return checkIfHidden(elementClass);
+    return isHidden(elementClass);
   }
 
   it("saves body state upon launching and restore it when everything finish",function(){
@@ -20,7 +20,7 @@ describe("it(): stores each example",function(){
     var elementOutsideTestState = isElementHidden(id); // false
     it("hiddensetter() toggles hidden class from element",function(){
       var elementInsideTestState = isElementHidden(id); // false
-      hiddenSetter(id);
+      hide(id);
       var elementInsideTestNewState = isElementHidden(id); // true
       assert(elementInsideTestNewState).isEqual(!elementInsideTestState);
     });

@@ -2,10 +2,10 @@
 
   function NoteList(){
     this._notes = [];
-  };
+  }
 
   NoteList.prototype.pushNote = function(note){
-    this._notes.push(note)
+    this._notes.push(note);
   };
 
   NoteList.prototype.getNotes = function() {

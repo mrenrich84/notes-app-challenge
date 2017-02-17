@@ -9,31 +9,28 @@
         self.createNewNote();
         self.clearForm();
         location.hash = "#home";
-      } else {
-        if (location.hash === "#home") {
-          var homePageDiv = document.getElementById("home_page_content");
-          var noteContentDiv = document.getElementById("note_content");
+      } else if (location.hash === "#home") {
+        var homePageDiv = document.getElementById("home_page_content");
+        var noteContentDiv = document.getElementById("note_content");
 
-          if (checkIfHidden(homePageDiv.getAttribute('class'))) {
-            hiddenSetter("home_page_content");
+          if (isHidden(homePageDiv.getAttribute('class'))) {
+            unhide("home_page_content");
           }
+          if (!isHidden(noteContentDiv.getAttribute('class'))) {
+            hide("note_content");
+          }
+        noteListBuilder(self.appNoteList);
 
-          if (!checkIfHidden(noteContentDiv.getAttribute('class'))) {
-            hiddenSetter("note_content");
-          }
+      } else if (location.hash.includes("showNote")){
 
-          noteListBuilder(self.appNoteList);
-        } else {
-          if (location.hash.includes("showNote")) {
-            var note_id = location.hash.split("_")[1];
-            var note_text = self.appNoteList.getNoteById(note_id).getText();
-            domInjector("note_content", "<p>"+note_text+"</p>");
-            hiddenSetter("home_page_content");
-            hiddenSetter("note_content");
-          }
+        var note_id = location.hash.split("_")[1];
+        var note_text = self.appNoteList.getNoteById(note_id).getText();
+        domInjector("note_content", "<p>"+note_text+"</p>");
+        hide("home_page_content");
+        unhide("note_content");
         }
-      }
-    };
+      };
+
 
     this.createNewNote = function(){
       var noteText = document.getElementById('new_note_textarea').value;

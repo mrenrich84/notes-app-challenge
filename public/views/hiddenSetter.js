@@ -1,15 +1,30 @@
 (function(exports) {
-  var hiddenSetter = function(id){
+
+  var getElementClass = function(id){
     var element = document.getElementById(id);
     var elementClass = element.getAttribute('class');
-    if (checkIfHidden(elementClass) === false) {
-      element.setAttribute('class', (elementClass + " hidden").trim());
-    } else {
-      element.setAttribute('class', elementClass.replace('hidden', '').trim());
+    return elementClass;
+  };
+
+  var hide = function(id){
+    var elementClass = getElementClass(id);
+    if (!isHidden(elementClass)){
+    document.
+      getElementById(id).
+      setAttribute('class', (elementClass + " hidden").trim());
     }
   };
 
-  var checkIfHidden = function(elementClass){
+  var unhide = function(id){
+    var elementClass = getElementClass(id);
+    if (isHidden(elementClass)){
+    document.
+      getElementById(id).
+      setAttribute('class', elementClass.replace('hidden', '').trim());
+    }
+  };
+
+  var isHidden = function(elementClass){
     if (elementClass && elementClass.includes('hidden')) {
       return true;
     } else {
@@ -17,7 +32,8 @@
     }
   };
 
-  exports.hiddenSetter = hiddenSetter;
-  exports.checkIfHidden = checkIfHidden;
+  exports.hide = hide;
+  exports.unhide = unhide;
+  exports.isHidden = isHidden;
 
 })(this);

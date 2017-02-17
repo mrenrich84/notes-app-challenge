@@ -16,5 +16,4 @@
 
   exports.noteListBuilder = noteListBuilder;
   exports.clearElement = clearElement;
-
 })(this);
