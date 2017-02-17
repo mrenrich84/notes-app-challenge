@@ -89,23 +89,23 @@
     this.testAbstraction(args);
   };
 
-  AssertObj.prototype.toNotThrow = function(assertion) {
+  var toNotThrowEvaluationFunction = function(args) {
+    try {
+      args.assertion();
+      return true;
+    }
+    catch(error) {
+      args.assertion = error;
+      return false;
+    }
+  }
+
+  AssertObj.prototype.toNotThrow = function() {
     var args = {
       matcherType : 'toNotThrow',
       expectation : '',
-      not : true,
-      evaluationFunction : function(assertion) {
-      	var results = false;
-      	try {
-          assertion();
-          return results;
-        }
-        catch(e) {
-          args.assertion = e;
-          results = true;
-          return results;
-        }
-      }
+      // not : true,
+      evaluationFunction : toNotThrowEvaluationFunction
     };
     this.testAbstraction(args);
   };
