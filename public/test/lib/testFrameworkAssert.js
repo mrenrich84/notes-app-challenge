@@ -65,23 +65,24 @@
     this.toContainAbstraction(args);
   };
 
+  var toThrowEvaluationFunction = function(args){
+    try {
+      args.assertion();
+      args.assertion = "NO ERROR MESSAGE"; // nice hack !!
+      return false;
+    }
+    catch(error){
+      if (error == args.expectation) {
+        return true;
+      }
+      args.assertion = error;
+      return false;
+    }
+  }
+
   AssertObj.prototype.toThrow = function (expectation) {
     var args = {
-      evaluationFunction : function(args){
-	      var results = false;
-        try {
-          assertion();
-          args.assertion = "NO ERROR MESSAGE";
-        }
-        catch(error){
-          if (error == expectation) {
-            results = true;
-            return results;
-          }
-          args.assertion = error;
-        }
-	       return results;
-      },
+      evaluationFunction : toThrowEvaluationFunction,
       expectation : expectation,
       matcherType : 'toThrow'
     };
