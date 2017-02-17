@@ -141,9 +141,9 @@
   };
 
   AssertObj.prototype.toThrow = function (expectation) {
-    var results = false;
     var args = {
       testFunction : function(functionToTest, expectation, args){
+	var results = false;
         try {
           functionToTest();
           args.functionToTest = "NO ERROR MESSAGE";
@@ -154,6 +154,7 @@
           }
           args.functionToTest = error;
         }
+	return results;
       },
       expectation : expectation,
       matcherType : 'toThrow'
@@ -162,13 +163,13 @@
   };
 
   AssertObj.prototype.toNotThrow = function(functionToTest) {
-    var results = false;
     var args = {
       matcherType : 'toNotThrow',
       expectation : '',
       not : true,
       testFunction : function(functionToTest) {
-        try {
+      	var results = false;
+      	try {
           functionToTest();
           return results;
         }
