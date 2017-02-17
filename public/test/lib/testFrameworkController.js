@@ -1,34 +1,34 @@
 (function(exports){
 
-  function saveState(){
+  function saveDOMBody(){
     return document.body.innerHTML;
   }
 
-  function restoreState(myOriginalBody){
+  function restoreDOMBody(myOriginalBody){
     document.body.innerHTML = myOriginalBody;
   }
 
   function testController(args){
     testPrinter.printTestHeader(args);
-    myOriginalBody = saveState();
-    args.codeBlock();
-    restoreState(myOriginalBody);
+    myOriginalBody = saveDOMBody();
+    args.testCodeBlock();
+    restoreDOMBody(myOriginalBody);
   }
 
-  function it(message, codeBlock){
+  function it(message, testCodeBlock){
     var args = {
       testHeaderType :  'it',
       message :         message,
-      codeBlock :       codeBlock
+      testCodeBlock :   testCodeBlock
     };
     testController(args);
   }
 
-  function describe(message, codeBlock){
+  function describe(message, testCodeBlock){
     var args = {
       testHeaderType :  'describe',
       message :         message,
-      codeBlock :       codeBlock
+      testCodeBlock :   testCodeBlock
     };
     testController(args);
   }
